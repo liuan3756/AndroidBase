@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:id="@+id/tvToastTextContent"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:background="@drawable/bg_toast"
+          android:paddingBottom="12dp"
+          android:paddingEnd="18dp"
+          android:paddingStart="18dp"
+          android:paddingTop="12dp"
+          android:textColor="@android:color/white"
+          android:textSize="14sp"
+          tools:text="提示内容提示内容提示内容">
+</TextView>

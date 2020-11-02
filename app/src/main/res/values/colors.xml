@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0041C4</color>
+    <color name="colorPrimaryDark">#002E60</color>
+    <color name="colorSecondary">#7FA0E1</color>
+    <color name="colorAccent">#0041C4</color>
+    <color name="colorDark">#333333</color>
+
+    <color name="colorPrimaryAlpha02">#050041C4</color>
+    <color name="colorPrimaryAlpha05">#0D0041C4</color>
+    <color name="colorPrimaryAlpha10">#1A0041C4</color>
+    <color name="colorPrimaryAlpha15">#260041C4</color>
+    <color name="colorPrimaryAlpha25">#400041C4</color>
+    <color name="colorPrimaryAlpha40">#660041C4</color>
+    <color  name="colorBackgroundLightAlpha10">#1AFFFFFF</color>
+    <color name="colorBackgroundLightAlpha15">#26FFFFFF</color>
+    <color name="colorBackgroundLightAlpha20">#33FFFFFF</color>
+    <color name="colorBackgroundLightAlpha40">#66FFFFFF</color>
+    <color name="colorBackgroundLightAlpha50">#80FFFFFF</color>
+
+    <color name="colorButtonBackgroundSecondary">#F2F4F7</color>
+    <color name="colorTest">#0041C4</color>
+
+    <color name="colorBackgroundLight">@android:color/white</color>
+    <color name="colorBackgroundTint">#F2F4F7</color>
+    <color name="colorBackgroundPressed">@color/colorPrimaryAlpha05</color>
+    <color name="colorBackgroundToast">#7F000000</color>
+    <color name="colorBackgroundDark">@android:color/black</color>
+
+    <color name="colorTextPrimary">#002251</color>
+    <color name="colorTextSecondary">#7A869A</color>
+    <color name="colorTextTertiary">#C1C7D0</color>
+    <color name="colorTextHint">#E0E0E0</color>
+    <color name="colorTextLight">@android:color/white</color>
+</resources>

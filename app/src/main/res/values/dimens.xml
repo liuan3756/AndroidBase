@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dividerHeightNormal">1dp</dimen>
+    <dimen name="toolbarHeight">46dp</dimen>
+    <dimen name="toolbarContentDividerHeight">8dp</dimen>
+</resources>

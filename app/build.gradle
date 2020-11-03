@@ -10,7 +10,7 @@ android {
         //noinspection OldTargetApi
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.4"
     }
 
     buildTypes {
@@ -29,8 +29,8 @@ android {
 }
 
 dependencies {
-    apply plugin: 'com.github.dcendents.android-maven'
-    group = 'com.github.liuan3756'
+//    apply plugin: 'com.github.dcendents.android-maven'
+//    group = 'com.github.liuan3756'
 
     api fileTree(dir: "libs", include: ["*.jar"])
     api 'androidx.appcompat:appcompat:1.2.0'

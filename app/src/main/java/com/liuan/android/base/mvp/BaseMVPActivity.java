@@ -12,7 +12,7 @@ import androidx.viewbinding.ViewBinding;
  * @author Peach Parrot
  * @date 2019年10月11日 18:24
  */
-public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter,VB extends ViewBinding> extends BaseFunctionsActivity<VB> implements BaseContract.View
+public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter, VB extends ViewBinding> extends BaseFunctionsActivity<VB> implements BaseContract.View
 {
     protected Presenter presenter;
 
@@ -41,6 +41,11 @@ public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter,V
         ToastUtil.toast(message);
     }
 
+    protected Presenter createPresenter()
+    {
+        return null;
+    }
+
     @Override
     protected void onDestroy()
     {
@@ -51,8 +56,4 @@ public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter,V
         }
     }
 
-    protected Presenter createPresenter()
-    {
-        return null;
-    }
 }

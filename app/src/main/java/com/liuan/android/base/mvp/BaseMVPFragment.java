@@ -13,7 +13,7 @@ import androidx.viewbinding.ViewBinding;
  * @author Peach Parrot
  * @date 2019年10月12日 14:01
  */
-public abstract class BaseMVPFragment<Presenter extends BasePresenter, VB extends ViewBinding> extends BaseViewFragment<VB> implements BaseContract.View
+public abstract class BaseMVPFragment<Presenter extends BaseContract.Presenter, VB extends ViewBinding> extends BaseViewFragment<VB> implements BaseContract.View
 {
     protected Presenter presenter;
 

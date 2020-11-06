@@ -10,12 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MarginItemDecoration extends RecyclerView.ItemDecoration
+public class LinearMarginItemDecoration extends RecyclerView.ItemDecoration
 {
     private final int horizontalMargin;
     private final int verticalMargin;
 
-    public MarginItemDecoration(Context context, int horizontalMarginDp, int verticalMarginDp)
+    public LinearMarginItemDecoration(Context context, int horizontalMarginDp, int verticalMarginDp)
     {
         this.horizontalMargin = DensityUtil.dp2px(context, horizontalMarginDp);
         this.verticalMargin = DensityUtil.dp2px(context, verticalMarginDp);

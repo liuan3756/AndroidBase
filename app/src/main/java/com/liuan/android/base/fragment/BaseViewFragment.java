@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.liuan.android.base.R;
 import com.liuan.android.base.activity.BaseViewActivity;
-import com.liuan.android.base.tool.TimeFormatter;
 import com.liuan.android.base.widget.ViewBindingCreator;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import androidx.viewbinding.ViewBinding;
  */
 public abstract class BaseViewFragment<VB extends ViewBinding> extends Fragment
 {
-    private View rootView;
 
     protected VB vBinding;
 
@@ -32,11 +30,15 @@ public abstract class BaseViewFragment<VB extends ViewBinding> extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        vBinding = ViewBindingCreator.createViewBinding(getClass(), inflater);
-        rootView = generateContentView(vBinding == null ? getContentView() : vBinding.getRoot());
-        rootView.setBackgroundColor(getResources().getColor(R.color.colorBackgroundTint));
-        onCreateView(rootView);
-        return rootView;
+        if (vBinding == null)
+        {
+            vBinding = ViewBindingCreator.createViewBinding(getClass(), inflater);
+            View rootView = generateContentView(
+                    vBinding == null ? getContentView() : vBinding.getRoot());
+            rootView.setBackgroundColor(getResources().getColor(R.color.colorBackgroundTint));
+            onCreateView(rootView);
+        }
+        return vBinding.getRoot();
     }
 
     protected abstract void onCreateView(View rootView);
@@ -58,11 +60,6 @@ public abstract class BaseViewFragment<VB extends ViewBinding> extends Fragment
         {
             ((BaseViewActivity) activity).setStatusBarTextDark(isStatusBarTextDark);
         }
-    }
-
-    protected void setBackgroundColor(int color)
-    {
-        rootView.setBackgroundColor(color);
     }
 
     protected void showLoadingDialog()

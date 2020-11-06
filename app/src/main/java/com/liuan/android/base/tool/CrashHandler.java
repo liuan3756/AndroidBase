@@ -3,6 +3,7 @@ package com.liuan.android.base.tool;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Process;
 
 import com.liuan.android.base.BaseApplication;
 
@@ -51,5 +52,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler
                     }
                 });
         ex.printStackTrace();
+        Process.killProcess(Process.myPid());
+        System.exit(10);
     }
 }

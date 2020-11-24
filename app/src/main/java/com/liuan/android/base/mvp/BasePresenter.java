@@ -1,5 +1,7 @@
 package com.liuan.android.base.mvp;
 
+import com.liuan.android.base.viewModel.ViewModelDelegate;
+
 /**
  * @author Peach Parrot
  * @date 2019年10月12日 11:38
@@ -7,6 +9,7 @@ package com.liuan.android.base.mvp;
 public abstract class BasePresenter<View extends BaseContract.View> implements BaseContract.Presenter
 {
     protected View view;
+    protected ViewModelDelegate viewModelDelegate;
 
     protected BasePresenter(View view)
     {
@@ -25,9 +28,9 @@ public abstract class BasePresenter<View extends BaseContract.View> implements B
         this.view = null;
     }
 
-    protected <Model extends BaseModel> Model getModel(Class<Model> modelClass)
+    @Override
+    public void setViewModelDelegate(ViewModelDelegate viewModelDelegate)
     {
-        return ModelManager.getInstance()
-                           .getModel(modelClass);
+        this.viewModelDelegate = viewModelDelegate;
     }
 }

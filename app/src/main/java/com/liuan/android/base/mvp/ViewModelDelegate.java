@@ -1,6 +1,4 @@
-package com.liuan.android.base.viewModel;
-
-import com.liuan.android.base.mvp.BaseContract;
+package com.liuan.android.base.mvp;
 
 import java.util.HashMap;
 
@@ -17,45 +15,35 @@ import androidx.lifecycle.ViewModelStoreOwner;
  */
 public class ViewModelDelegate
 {
-    private HashMap<String, ViewModelInterface> hashMap;
-    private final String defaultName;
+    private HashMap<Integer, ViewModelInterface> hashMap;
+    private int defaultLevel;
+    public static final int LEVEL_ACTIVITY = 0;
+    public static final int LEVEL_FRAGMENT = 1;
 
-    public ViewModelDelegate(String defaultName)
-    {
-        this.defaultName = defaultName;
-    }
-
-    public void bindToPresenter(BaseContract.Presenter presenter)
-    {
-        if (presenter != null)
-        {
-            presenter.setViewModelDelegate(this);
-        }
-    }
-
-    public void addViewModelInterface(String name, ViewModelInterface viewModelInterface)
+    public void addViewModelInterface(int level, ViewModelInterface viewModelInterface)
     {
         if (hashMap == null)
         {
             hashMap = new HashMap<>();
+            defaultLevel = level;
         }
-        hashMap.put(name, viewModelInterface);
+        hashMap.put(level, viewModelInterface);
     }
 
     public <VM extends ViewModel> VM createViewModel(Class<VM> vmClass)
     {
-        return createViewModel(defaultName, vmClass);
+        return createViewModel(defaultLevel, vmClass);
     }
 
-    public <VM extends ViewModel> VM createViewModel(String name, Class<VM> vmClass)
+    public <VM extends ViewModel> VM createViewModel(int level, Class<VM> vmClass)
     {
-        return createViewModel(name, new ViewModelProvider.NewInstanceFactory(), vmClass);
+        return createViewModel(level, new ViewModelProvider.NewInstanceFactory(), vmClass);
     }
 
-    public <VM extends ViewModel> VM createViewModel(String name, ViewModelProvider.Factory factory,
+    public <VM extends ViewModel> VM createViewModel(int level, ViewModelProvider.Factory factory,
                                                      Class<VM> vmClass)
     {
-        ViewModelInterface viewModelInterface = hashMap.get(name);
+        ViewModelInterface viewModelInterface = hashMap.get(level);
         if (viewModelInterface != null)
         {
             return new ViewModelProvider(viewModelInterface.getViewModelStoreOwner(), factory).get(
@@ -66,7 +54,7 @@ public class ViewModelDelegate
 
     private ViewModelInterface getDefaultViewModelInterface()
     {
-        return hashMap.get(defaultName);
+        return hashMap.get(defaultLevel);
     }
 
     public <T> void observeLiveData(LiveData<T> liveData, Observer<T> observer)

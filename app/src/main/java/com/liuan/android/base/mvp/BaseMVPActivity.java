@@ -2,9 +2,8 @@ package com.liuan.android.base.mvp;
 
 import android.os.Bundle;
 
+import com.liuan.android.base.activity.BaseFunctionsActivity;
 import com.liuan.android.base.tool.ToastUtil;
-import com.liuan.android.base.viewModel.BaseViewModelActivity;
-import com.liuan.android.base.viewModel.ViewModelDelegate;
 
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -15,7 +14,7 @@ import androidx.viewbinding.ViewBinding;
  * @author Peach Parrot
  * @date 2019年10月11日 18:24
  */
-public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter, VB extends ViewBinding> extends BaseViewModelActivity<VB> implements BaseContract.View,
+public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter, VB extends ViewBinding> extends BaseFunctionsActivity<VB> implements BaseContract.View,
                                                                                                                                                      ViewModelDelegate.ViewModelInterface
 {
     protected Presenter presenter;
@@ -25,7 +24,8 @@ public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter, 
     {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
-        viewModelDelegate.bindToPresenter(presenter);
+        presenter.getViewModelDelegate()
+                 .addViewModelInterface(ViewModelDelegate.LEVEL_ACTIVITY, this);
     }
 
     @Override
@@ -61,4 +61,15 @@ public abstract class BaseMVPActivity<Presenter extends BaseContract.Presenter, 
         }
     }
 
+    @Override
+    public ViewModelStoreOwner getViewModelStoreOwner()
+    {
+        return this;
+    }
+
+    @Override
+    public LifecycleOwner getLifecycleOwner()
+    {
+        return this;
+    }
 }

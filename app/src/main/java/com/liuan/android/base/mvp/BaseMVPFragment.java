@@ -22,7 +22,10 @@ public abstract class BaseMVPFragment<Presenter extends BaseContract.Presenter, 
     {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
-        setViewModelHolder(presenter);
+        if (presenter != null)
+        {
+            setViewModelHolder(presenter);
+        }
     }
 
     @Override

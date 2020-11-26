@@ -2,6 +2,7 @@ package com.liuan.android.base.viewModel;
 
 import com.liuan.android.base.fragment.BaseViewFragment;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.viewbinding.ViewBinding;
@@ -12,7 +13,7 @@ import androidx.viewbinding.ViewBinding;
  */
 public abstract class BaseViewModelFragment<VB extends ViewBinding> extends BaseViewFragment<VB>
 {
-    protected final void setViewModelHolder(IViewModelHolder iViewModelHolder)
+    protected final void setViewModelHolder(@NonNull IViewModelHolder iViewModelHolder)
     {
         iViewModelHolder.setIViewModelOwners(new IViewModelOwners()
         {

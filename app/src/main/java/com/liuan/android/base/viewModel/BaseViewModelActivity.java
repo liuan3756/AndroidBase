@@ -2,6 +2,7 @@ package com.liuan.android.base.viewModel;
 
 import com.liuan.android.base.activity.BaseFunctionsActivity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.viewbinding.ViewBinding;
@@ -10,9 +11,10 @@ import androidx.viewbinding.ViewBinding;
  * @author Peach Parrot
  * @date 2020年11月26日 15:14
  */
-public class BaseViewModelActivity<VB extends ViewBinding> extends BaseFunctionsActivity<VB>
+public abstract class BaseViewModelActivity<VB extends ViewBinding> extends BaseFunctionsActivity<VB>
 {
-    protected final void setViewModelHolder(IViewModelHolder iViewModelHolder){
+    protected final void setViewModelHolder(@NonNull IViewModelHolder iViewModelHolder)
+    {
         iViewModelHolder.setIViewModelOwners(new IViewModelOwners()
         {
             @Override

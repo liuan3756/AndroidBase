@@ -1,13 +1,19 @@
 package com.liuan.android.base.mvp;
 
+import com.liuan.android.base.viewModel.BaseViewModelHolder;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+
 /**
  * @author Peach Parrot
  * @date 2019年10月12日 11:38
  */
-public abstract class BasePresenter<View extends BaseContract.View> implements BaseContract.Presenter
+public abstract class BasePresenter<View extends BaseContract.View> extends BaseViewModelHolder implements BaseContract.Presenter
 {
     protected View view;
-    private ViewModelDelegate viewModelDelegate;
 
     protected BasePresenter(View view)
     {
@@ -24,16 +30,26 @@ public abstract class BasePresenter<View extends BaseContract.View> implements B
     public void detachView()
     {
         this.view = null;
-        getViewModelDelegate().clear();
     }
 
-    @Override
-    public ViewModelDelegate getViewModelDelegate()
+    protected <VM extends ViewModel> VM getViewModel(Class<VM> vmClass)
     {
-        if (viewModelDelegate == null)
+        if (view instanceof Fragment)
         {
-            viewModelDelegate = new ViewModelDelegate();
+            return getFragmentViewModel(vmClass);
         }
-        return viewModelDelegate;
+        return getActivityViewModel(vmClass);
+    }
+
+    protected <T> void observeLiveData(LiveData<T> liveData, Observer<T> observer)
+    {
+        if (view instanceof Fragment)
+        {
+            observeFragmentLiveData(liveData, observer);
+        }
+        else
+        {
+            observeActivityLiveData(liveData, observer);
+        }
     }
 }
